@@ -36,11 +36,11 @@ output "config_config_rules_rule_id" {
 }
 output "config_config_rules_scope" {
   description = "Map of scope values across all config_config_rules, keyed the same as var.config_config_rules"
-  value       = { for k, v in aws_config_config_rule.config_config_rules : k => v.scope if v.scope != null && length(v.scope) > 0 }
+  value       = { for k, v in aws_config_config_rule.config_config_rules : k => one(v.scope) if v.scope != null && length(v.scope) > 0 }
 }
 output "config_config_rules_source" {
   description = "Map of source values across all config_config_rules, keyed the same as var.config_config_rules"
-  value       = { for k, v in aws_config_config_rule.config_config_rules : k => v.source if v.source != null && length(v.source) > 0 }
+  value       = { for k, v in aws_config_config_rule.config_config_rules : k => one(v.source) if v.source != null && length(v.source) > 0 }
 }
 output "config_config_rules_tags" {
   description = "Map of tags values across all config_config_rules, keyed the same as var.config_config_rules"
